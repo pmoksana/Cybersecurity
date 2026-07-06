@@ -12,17 +12,17 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
     <style>
-        /* Databricks Core Design Tokens */
+        /* Databricks Core Design System Tokens */
         :root {
-            --db-canvas: #1B3139;      
-            --db-lava: #FF3621;        
-            --db-oat-light: #F9F7F4;   
-            --db-oat-medium: #EEEDE9;  
-            --db-card: #FFFFFF;        
-            --db-border: #DCE0E2;      
-            --db-text-main: #303F47;   
-            --db-text-muted: #5A6F77;  
-            --db-accent-pink: #FF9E94; 
+            --db-canvas: #1B3139;      /* Deep dark slate navy */
+            --db-lava: #FF3621;        /* Vibrant brand orange accent */
+            --db-oat-light: #F9F7F4;   /* Soft premium background */
+            --db-oat-medium: #EEEDE9;  /* Section dividers */
+            --db-card: #FFFFFF;        /* Surface white */
+            --db-border: #DCE0E2;      /* Light technical borders */
+            --db-text-main: #303F47;   /* Readable dark body text */
+            --db-text-muted: #5A6F77;  /* Balanced gray metadata */
+            --db-accent-pink: #FF9E94; /* Light coral complement */
         }
 
         * {
@@ -41,6 +41,7 @@
             min-height: 100vh;
         }
 
+        /* Fixed Navigation Banner */
         header {
             background-color: var(--db-canvas);
             color: #FFFFFF;
@@ -86,6 +87,7 @@
             color: var(--db-accent-pink);
         }
 
+        /* Grid Layout Configuration */
         .main-wrapper {
             max-width: 1200px;
             width: 100%;
@@ -97,10 +99,13 @@
         }
 
         @media (max-width: 900px) {
-            .main-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+            .main-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
-        /* Sidebar Design Configuration */
+        /* LEFT SIDE: Navigation Sidebar Tree */
         aside {
             display: flex;
             flex-direction: column;
@@ -164,7 +169,7 @@
 
         .terminal-cmd { color: var(--db-accent-pink); }
 
-        /* Workspace Design Elements */
+        /* RIGHT SIDE: Dynamic Workspace Viewports */
         .content-workspace {
             display: flex;
             flex-direction: column;
@@ -207,7 +212,10 @@
             flex-shrink: 0;
         }
 
-        .nav-actions-group { display: flex; gap: 0.5rem; }
+        .nav-actions-group {
+            display: flex;
+            gap: 0.5rem;
+        }
 
         .back-btn {
             background-color: var(--db-canvas);
@@ -243,7 +251,7 @@
 
         .open-file-btn:hover { background-color: var(--db-canvas); }
 
-        /* Folder Layout Components */
+        /* Folder Card Matrix Grid */
         .folder-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -282,12 +290,13 @@
 
         .folder-card:hover .explore-badge { background-color: var(--db-lava); color: white; }
 
-        /* Document View Render Box */
+        /* Dynamic Item Panels */
         .file-panel {
             background-color: var(--db-card);
             border: 1px solid var(--db-border);
             border-radius: 14px;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(27, 49, 57, 0.02);
         }
 
         .file-list { list-style: none; }
@@ -303,7 +312,7 @@
         .file-left-group { display: flex; align-items: center; gap: 0.75rem; }
         .file-title-text { font-weight: 600; font-size: 0.98rem; color: var(--db-text-main); }
 
-        /* Inside Markdown Content Typography */
+        /* Inside Markdown Native Render Container */
         .markdown-body {
             padding: 2.5rem;
             background-color: var(--db-card);
@@ -325,341 +334,22 @@
             font-size: 0.88rem;
             border: 1px solid var(--db-border);
         }
-    </style>
-</head>
-<body>
 
-    <header>
-        <div class="header-container">
-            <div class="brand-section">
-                <span class="brand-
-cat << 'EOF' > index.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cybersecurity Engineering Hub</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
-    <style>
-        /* Databricks Core Design Tokens */
-        :root {
-            --db-canvas: #1B3139;      
-            --db-lava: #FF3621;        
-            --db-oat-light: #F9F7F4;   
-            --db-oat-medium: #EEEDE9;  
-            --db-card: #FFFFFF;        
-            --db-border: #DCE0E2;      
-            --db-text-main: #303F47;   
-            --db-text-muted: #5A6F77;  
-            --db-accent-pink: #FF9E94; 
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--db-oat-light);
-            color: var(--db-text-main);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
+        footer {
             background-color: var(--db-canvas);
-            color: #FFFFFF;
-            border-bottom: 4px solid var(--db-lava);
-            padding: 1.25rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            color: #90A5B1;
+            font-size: 0.8rem;
+            padding: 2rem;
+            border-top: 1px solid #2C434C;
+            margin-top: auto;
         }
 
-        .header-container {
+        .footer-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .brand-section {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .brand-tag {
-            background-color: var(--db-lava);
-            color: #FFFFFF;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        .brand-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .brand-name span {
-            color: var(--db-accent-pink);
-        }
-
-        .main-wrapper {
-            max-width: 1200px;
-            width: 100%;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 3rem;
-        }
-
-        @media (max-width: 900px) {
-            .main-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-        }
-
-        /* Sidebar Design Configuration */
-        aside {
-            display: flex;
-            flex-direction: column;
-            gap: 1.75rem;
-        }
-
-        .directory-card {
-            background-color: var(--db-card);
-            border: 1px solid var(--db-border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(27, 49, 57, 0.02);
-        }
-
-        .directory-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--db-text-muted);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            border-bottom: 2px solid var(--db-oat-medium);
-            padding-bottom: 0.5rem;
-        }
-
-        .directory-menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .directory-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--db-canvas);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .directory-link:hover, .directory-link.active {
-            background-color: var(--db-oat-medium);
-            color: var(--db-lava);
-        }
-
-        .terminal-panel {
-            background-color: var(--db-canvas);
-            border: 1px solid #2C434C;
-            border-radius: 12px;
-            color: #E6EEF0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            padding: 1.25rem;
-        }
-
-        .terminal-cmd { color: var(--db-accent-pink); }
-
-        /* Workspace Design Elements */
-        .content-workspace {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .welcome-lead {
-            font-size: 1.05rem;
-            color: var(--db-text-muted);
-            line-height: 1.6;
-            margin-top: -0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--db-border);
-            padding-bottom: 1rem;
-            margin-bottom: 0.5rem;
-            gap: 1rem;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--db-canvas);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 1.4rem;
-            background-color: var(--db-lava);
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-
-        .nav-actions-group { display: flex; gap: 0.5rem; }
-
-        .back-btn {
-            background-color: var(--db-canvas);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.15s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            white-space: nowrap;
-        }
-
-        .back-btn:hover { background-color: var(--db-lava); }
-
-        .open-file-btn {
-            background-color: var(--db-lava);
-            color: #FFFFFF;
-            border: none;
-            padding: 0.45rem 0.9rem;
-            border-radius: 6px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.15s ease;
-            text-transform: uppercase;
-        }
-
-        .open-file-btn:hover { background-color: var(--db-canvas); }
-
-        /* Folder Layout Components */
-        .folder-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .folder-card {
-            background-color: var(--db-card);
-            border: 1px solid var(--db-border);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .folder-card:hover {
-            border-color: #C0C8CC;
-            box-shadow: 0 4px 15px rgba(27, 49, 57, 0.04);
-            transform: translateX(4px);
-        }
-
-        .folder-info { display: flex; align-items: center; gap: 1rem; }
-        .folder-icon { font-size: 1.5rem; }
-        .folder-name { font-size: 1.05rem; font-weight: 700; color: var(--db-canvas); }
-        .explore-badge {
-            font-size: 0.75rem;
-            background-color: #F1EFEA;
-            color: var(--db-canvas);
-            padding: 0.3rem 0.6rem;
-            border-radius: 6px;
-            font-weight: 700;
-        }
-
-        .folder-card:hover .explore-badge { background-color: var(--db-lava); color: white; }
-
-        /* Document View Render Box */
-        .file-panel {
-            background-color: var(--db-card);
-            border: 1px solid var(--db-border);
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .file-list { list-style: none; }
-        .file-item {
-            border-bottom: 1px solid #F5F4F0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.1rem 1.5rem;
-        }
-
-        .file-item:last-child { border-bottom: none; }
-        .file-left-group { display: flex; align-items: center; gap: 0.75rem; }
-        .file-title-text { font-weight: 600; font-size: 0.98rem; color: var(--db-text-main); }
-
-        /* Inside Markdown Content Typography */
-        .markdown-body {
-            padding: 2.5rem;
-            background-color: var(--db-card);
-            border: 1px solid var(--db-border);
-            border-radius: 14px;
-            color: var(--db-text-main);
-        }
-
-        .markdown-body h1 { font-size: 1.75rem; border-bottom: 1px solid var(--db-oat-medium); padding-bottom: 0.5rem; margin-bottom: 1rem; color: var(--db-canvas); }
-        .markdown-body h2 { font-size: 1.35rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--db-canvas); }
-        .markdown-body p { margin-bottom: 1rem; line-height: 1.7; }
-        .markdown-body ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-        .markdown-body li { margin-bottom: 0.4rem; }
-        .markdown-body code {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: var(--db-oat-light);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.88rem;
-            border: 1px solid var(--db-border);
         }
     </style>
 </head>
@@ -679,15 +369,15 @@ cat << 'EOF' > index.html
             <div class="directory-card">
                 <div class="directory-title">Navigation Directory</div>
                 <ul class="directory-menu">
-                    <li id="nav-root" class="directory-link active" onclick="loadHomeView()">📁 Root Workspace</li>
+                    <li id="nav-root" class="directory-link active" onclick="navigateToHome()">📁 Root Workspace</li>
                 </ul>
             </div>
             
             <div class="terminal-panel">
                 <span class="terminal-cmd">$ ./deploy.sh</span><br>
-                🚀 Sandbox Virtualized...<br>
-                ✅ Build pipeline secure.<br>
-                🎉 Handshake verified.
+                🚀 Live Sync Engine Online...<br>
+                ✅ GitHub Core API connected.<br>
+                🎉 0 Hardcoded paths remaining.
             </div>
         </aside>
 
@@ -703,60 +393,30 @@ cat << 'EOF' > index.html
     </footer>
 
     <script>
-        // Data Store containing engineering profiles mapped directly to avoid CORS issues
-        const repositoryData = {
-            "Cyber Threat Management": [
-                { 
-                    name: "Incident Response and Threat Management Analysis.md",
-                    content: "# Incident Response and Threat Management\n\n## 1. Executive Summary\nThis document compiles critical indicators of compromise (IoC) and tracks enterprise defense profiles.\n\n## 2. Mitigation Strategies\n* Implement strict authentication barriers across all logical segments.\n* Monitor edge access configurations for suspicious connection attempts."
-                }
-            ],
-            "Endpoint Security": [
-                { 
-                    name: "Host Security and Baseline Protection Standards.md",
-                    content: "# Host Security Baseline standards\n\n## 1. Audit Target Controls\nEnforce local credential validation patterns and secure background configuration vectors.\n\n## 2. Hardening Protocols\n* Audit active interface ports regularly.\n* Remove default administrative trust profiles."
-                }
-            ],
-            "Network Defense": [
-                { 
-                    name: "1_3_5_Lab_Document_Enterprise_Cybersecurity_Issues.md",
-                    content: "# 1.3.5 Lab Document Enterprise Cybersecurity Issues\n\n## Case Analysis Framework\nDetailed investigation tracking infrastructure risks, routing perimeter leaks, and configuration controls.\n\n## Critical Findings\n* Enterprise infrastructure components lack consistent encryption across backup logical segments.\n* Access control lists do not properly segment edge networks from corporate assets."
-                }
-            ],
-            "Network Addressing and Basic": [
-                { 
-                    name: "IPv4 and Subnet Mask Architecture Configuration.md",
-                    content: "# IPv4 and Subnet Mask Architecture\n\n## 1. Design Controls\nVerification maps tracking logical class constraints and private addressing parameters.\n\n## 2. Engineering Logs\n* Configured interface networks with specific class constraints.\n* Validated mask boundaries to guarantee host alignment."
-                }
-            ],
-            "Network Support and Security": [
-                { 
-                    name: "Firewall Access Lists and Control Log Policies.md",
-                    content: "# Firewall Access Lists and Control Log Policies\n\n## 1. System Rules\nAudit configurations isolating untrusted zones from application servers.\n\n## 2. Verification Vector\n* Validated packet filtering logs against access matrices."
-                }
-            ],
-            "Networking Basics": [
-                { 
-                    name: "OSI Model Encapsulation and Data Link Layer Sync.md",
-                    content: "# OSI Model Encapsulation and Data Link Layer\n\n## 1. Theoretical Architecture\nAnalysis tracking traffic movement from Layer 1 physical layers up to programmatic interfaces."
-                }
-            ],
-            "Networking Devices and Initial Configuration": [
-                { 
-                    name: "Switch and Cisco Router Access Authentication Profile.md",
-                    content: "# Switch and Cisco Router Access Authentication\n\n## 1. Device Configuration Hardening\nConsole trace profiles executing secure credential binding parameters."
-                }
-            ],
-            "Network Addressing and Basic Troubleshooting": [
-                { 
-                    name: "ICMP Diagnostics and Interface Trace Logging.md",
-                    content: "# ICMP Diagnostics and Interface Trace Logging\n\n## 1. Diagnostic Report\nVerification logs monitoring connection latency and tracking drop behavior across active circuits."
-                }
-            ]
-        };
+        // Static folder list matching your architecture
+        const targetFolders = [
+            "Cyber Threat Management",
+            "Endpoint Security",
+            "Network Defense",
+            "Network Addressing and Basic",
+            "Network Support and Security",
+            "Networking Basics",
+            "Networking Devices and Initial Configuration",
+            "Network Addressing and Basic Troubleshooting"
+        ];
 
         const workspace = document.getElementById("workspace-view");
 
+        // Formats folder text cleanly into safe URLs for Hash Routing
+        function slugify(text) {
+            return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        }
+
+        function getFolderFromSlug(slug) {
+            return targetFolders.find(f => slugify(f) === slug);
+        }
+
+        // View A: Main Dashboard Landing Page
         function loadHomeView() {
             document.getElementById("nav-root").classList.add("active");
             
@@ -770,9 +430,9 @@ cat << 'EOF' > index.html
                 <div class="folder-grid">
             `;
             
-            Object.keys(repositoryData).forEach(folder => {
+            targetFolders.forEach(folder => {
                 html += `
-                    <div class="folder-card" onclick="loadFolderView('${folder}')">
+                    <div class="folder-card" onclick="navigateToFolder('${folder}')">
                         <div class="folder-info">
                             <span class="folder-icon">📁</span>
                             <span class="folder-name">${folder}</span>
@@ -786,58 +446,135 @@ cat << 'EOF' > index.html
             workspace.innerHTML = html;
         }
 
+        // View B: Dynamic Content Gathering View (Hits GitHub Content APIs natively)
         function loadFolderView(folderName) {
             document.getElementById("nav-root").classList.remove("active");
-            const files = repositoryData[folderName];
-            
-            let html = `
-                <div class="section-header">
-                    <h2 class="section-title">${folderName}</h2>
-                    <button class="back-btn" onclick="loadHomeView()">← Back to Home</button>
-                </div>
-                <div class="file-panel">
-                    <ul class="file-list">
-            `;
-            
-            if (files && files.length > 0) {
-                files.forEach((file, index) => {
-                    html += `
-                        <li class="file-item">
-                            <div class="file-left-group">
-                                <span>📝</span>
-                                <span class="file-title-text">${file.name}</span>
-                            </div>
-                            <button class="open-file-btn" onclick="loadMarkdownView('${folderName}', ${index})">Open Now</button>
-                        </li>
-                    `;
-                });
-            } else {
-                html += `<li class="file-item" style="color: var(--db-text-muted);">No trace sheets compiled inside this directory yet.</li>`;
-            }
-            
-            html += `</ul></div>`;
-            workspace.innerHTML = html;
-        }
-
-        function loadMarkdownView(folderName, fileIndex) {
-            const file = repositoryData[folderName][fileIndex];
             
             workspace.innerHTML = `
                 <div class="section-header">
-                    <h2 class="section-title">${file.name}</h2>
-                    <div class="nav-actions-group">
-                        <button class="back-btn" onclick="loadFolderView('${folderName}')">← Back to Folder</button>
-                        <button class="back-btn" onclick="loadHomeView()">🏢 Main Home</button>
-                    </div>
+                    <h2 class="section-title">${folderName}</h2>
+                    <button class="back-btn" onclick="navigateToHome()">← Back to Home</button>
                 </div>
-                <div class="markdown-body" id="markdown-container"></div>
+                <div class="file-panel">
+                    <ul class="file-list" id="async-file-list">
+                        <li class="file-item" style="color: var(--db-text-muted); font-family: 'JetBrains Mono', monospace;">
+                            🔄 Querying engineering branch manifests for accurate document listings...
+                        </li>
+                    </ul>
+                </div>
             `;
 
-            // Renders completely offline without hitting network blocks
-            document.getElementById("markdown-container").innerHTML = marked.parse(file.content);
+            // Query the public GitHub API tree structures for all files in real-time
+            const apiUrl = `https://api.github.com/repos/pmoksana/Cybersecurity/contents/${encodeURIComponent(folderName)}`;
+            
+            fetch(apiUrl)
+                .then(res => {
+                    if(!res.ok) throw new Error("Could not index directory files.");
+                    return res.json();
+                })
+                .then(files => {
+                    const listContainer = document.getElementById("async-file-list");
+                    // Filter to only display .md configurations
+                    const mdFiles = files.filter(f => f.name.toLowerCase().endsWith('.md'));
+
+                    if(mdFiles.length === 0) {
+                        listContainer.innerHTML = `<li class="file-item" style="color: var(--db-text-muted);">No trace sheets compiled inside this directory yet.</li>`;
+                        return;
+                    }
+
+                    let listHtml = "";
+                    mdFiles.forEach(file => {
+                        // Strip out the .md extension text visually for the public display
+                        const visibleName = file.name.replace(/\.md$/i, '').replace(/_/g, ' ');
+                        
+                        listHtml += `
+                            <li class="file-item">
+                                <div class="file-left-group">
+                                    <span>📝</span>
+                                    <span class="file-title-text">${visibleName}</span>
+                                </div>
+                                <button class="open-file-btn" onclick="navigateToMarkdown('${folderName}', '${file.name}')">Open Now</button>
+                            </li>
+                        `;
+                    });
+                    listContainer.innerHTML = listHtml;
+                })
+                .catch(err => {
+                    document.getElementById("async-file-list").innerHTML = `
+                        <li class="file-item" style="color: var(--db-lava); font-family: 'JetBrains Mono', monospace;">
+                            ⚠️ Connection pipeline failure: ${err.message}
+                        </li>
+                    `;
+                });
         }
 
-        window.onload = loadHomeView;
+        // View C: Dynamic Document Viewer View
+        function loadMarkdownView(folderName, fileName) {
+            const visibleDocName = fileName.replace(/\.md$/i, '').replace(/_/g, ' ');
+            
+            workspace.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">${visibleDocName}</h2>
+                    <div class="nav-actions-group">
+                        <button class="back-btn" onclick="navigateToFolder('${folderName}')">← Back to Folder</button>
+                        <button class="back-btn" onclick="navigateToHome()">🏢 Main Home</button>
+                    </div>
+                </div>
+                <div class="markdown-body" id="markdown-container">
+                    <p style="color: var(--db-text-muted); font-family: 'JetBrains Mono', monospace;">🔄 Establishing background network data stream mapping raw text...</p>
+                </div>
+            `;
+
+            const rawFileUrl = `https://raw.githubusercontent.com/pmoksana/Cybersecurity/main/${encodeURIComponent(folderName)}/${encodeURIComponent(fileName)}`;
+            
+            fetch(rawFileUrl)
+                .then(res => {
+                    if (!res.ok) throw new Error("Target documentation page unreachable.");
+                    return res.text();
+                })
+                .then(text => {
+                    document.getElementById("markdown-container").innerHTML = marked.parse(text);
+                })
+                .catch(err => {
+                    document.getElementById("markdown-container").innerHTML = `
+                        <p style="color: var(--db-lava); font-family: 'JetBrains Mono', monospace;">⚠️ Handshake error: ${err.message}</p>
+                    `;
+                });
+        }
+
+        /* --- Global Hash Routing Controllers --- */
+        function navigateToHome() { window.location.hash = ''; }
+        function navigateToFolder(folderName) { window.location.hash = '/' + slugify(folderName); }
+        function navigateToMarkdown(folderName, fileName) { window.location.hash = '/' + slugify(folderName) + '/' + encodeURIComponent(fileName); }
+
+        function routeChangeHandler() {
+            const hash = window.location.hash.slice(1);
+            if (!hash || hash === '/') {
+                loadHomeView();
+                return;
+            }
+
+            const segments = hash.split('/').filter(Boolean);
+            if (segments.length === 1) {
+                const targetFolder = getFolderFromSlug(segments[0]);
+                if (targetFolder) {
+                    loadFolderView(targetFolder);
+                } else {
+                    loadHomeView();
+                }
+            } else if (segments.length === 2) {
+                const targetFolder = getFolderFromSlug(segments[0]);
+                const fileName = decodeURIComponent(segments[1]);
+                if (targetFolder && fileName) {
+                    loadMarkdownView(targetFolder, fileName);
+                } else {
+                    loadHomeView();
+                }
+            }
+        }
+
+        window.addEventListener('hashchange', routeChangeHandler);
+        window.onload = routeChangeHandler;
     </script>
 </body>
 </html>
