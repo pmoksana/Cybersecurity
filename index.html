@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
     <style>
         /* Databricks Core Design System Tokens */
         :root {
@@ -169,11 +171,19 @@
             color: var(--db-accent-pink);
         }
 
-        /* RIGHT SIDE: Dynamic Workspace Viewports */
+        /* RIGHT SIDE: Workspace Design Viewports */
         .content-workspace {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+        }
+
+        .welcome-lead {
+            font-size: 1.05rem;
+            color: var(--db-text-muted);
+            line-height: 1.5;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
         }
 
         .section-header {
@@ -183,6 +193,7 @@
             border-bottom: 1px solid var(--db-border);
             padding-bottom: 1rem;
             margin-bottom: 0.5rem;
+            gap: 1rem;
         }
 
         .section-title {
@@ -200,9 +211,15 @@
             height: 1.4rem;
             background-color: var(--db-lava);
             border-radius: 2px;
+            flex-shrink: 0;
         }
 
-        /* Return Navigation Button Style */
+        /* Action Buttons */
+        .nav-actions-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
         .back-btn {
             background-color: var(--db-canvas);
             color: white;
@@ -216,13 +233,33 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
+            white-space: nowrap;
         }
 
         .back-btn:hover {
             background-color: var(--db-lava);
         }
 
-        /* Folder Dynamic Card Matrix Grid */
+        .open-file-btn {
+            background-color: var(--db-lava);
+            color: #FFFFFF;
+            border: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .open-file-btn:hover {
+            background-color: var(--db-canvas);
+        }
+
+        /* Folder Grid Architecture */
         .folder-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -278,7 +315,7 @@
             color: white;
         }
 
-        /* Deep-dive Inner Files List View */
+        /* Files List and Native Markdown Workspace Canvas */
         .file-panel {
             background-color: var(--db-card);
             border: 1px solid var(--db-border);
@@ -293,36 +330,75 @@
 
         .file-item {
             border-bottom: 1px solid #F5F4F0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 1.5rem;
         }
 
         .file-item:last-child {
             border-bottom: none;
         }
 
-        .file-link {
+        .file-left-group {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 1.25rem 1.5rem;
-            text-decoration: none;
+            gap: 0.75rem;
+        }
+
+        .file-title-text {
+            font-weight: 600;
+            font-size: 0.98rem;
             color: var(--db-text-main);
-            font-weight: 500;
-            transition: background-color 0.15s ease;
         }
 
-        .file-link:hover {
-            background-color: #FAF9F6;
-            color: var(--db-lava);
-        }
-
-        .meta-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--db-text-muted);
-            background-color: var(--db-oat-light);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
+        /* Markdown Document Native Render Styling Container */
+        .markdown-body {
+            padding: 2.5rem;
+            background-color: var(--db-card);
             border: 1px solid var(--db-border);
+            border-radius: 14px;
+            color: var(--db-text-main);
+        }
+
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+            color: var(--db-canvas);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .markdown-body h1 { font-size: 1.8rem; border-bottom: 1px solid var(--db-oat-medium); padding-bottom: 0.5rem; }
+        .markdown-body h2 { font-size: 1.4rem; }
+        
+        .markdown-body p {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .markdown-body code {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--db-oat-light);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--db-border);
+        }
+
+        .markdown-body pre {
+            background-color: var(--db-canvas);
+            color: #E6EEF0;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .markdown-body pre code {
+            background-color: transparent;
+            padding: 0;
+            border: none;
+            color: inherit;
         }
 
         /* Footer Element */
@@ -367,9 +443,9 @@
             
             <div class="terminal-panel">
                 <span class="terminal-cmd">$ ./deploy.sh</span><br>
-                🚀 Active Routing Active...<br>
-                ✅ Design Tokens Bound.<br>
-                🎉 System synchronized.
+                🚀 Core Engine Online...<br>
+                ✅ Native MD Parser active.<br>
+                🎉 Handshake verified.
             </div>
         </aside>
 
@@ -385,43 +461,46 @@
     </footer>
 
     <script>
-        // Data Manifest containing exact directories from image_de7a3c.png mapped with their targeted local .md structures
+        // Data Manifest matching case repository folder contents
         const repositoryData = {
             "Cyber Threat Management": [
-                { name: "Incident Response and Threat Management Analysis.md", type: "MARKDOWN" }
+                { name: "Incident Response and Threat Management Analysis.md" }
             ],
             "Endpoint Security": [
-                { name: "Host Security and Baseline Protection Standards.md", type: "MARKDOWN" }
+                { name: "Host Security and Baseline Protection Standards.md" }
             ],
             "Network Defense": [
-                { name: "1_3_5_Lab_Document_Enterprise_Cybersecurity_Issues.md", type: "MARKDOWN" }
+                { name: "1_3_5_Lab_Document_Enterprise_Cybersecurity_Issues.md" }
             ],
             "Network Addressing and Basic": [
-                { name: "IPv4 and Subnet Mask Architecture Configuration.md", type: "MARKDOWN" }
+                { name: "IPv4 and Subnet Mask Architecture Configuration.md" }
             ],
             "Network Support and Security": [
-                { name: "Firewall Access Lists and Control Log Policies.md", type: "MARKDOWN" }
+                { name: "Firewall Access Lists and Control Log Policies.md" }
             ],
             "Networking Basics": [
-                { name: "OSI Model Encapsulation and Data Link Layer Sync.md", type: "MARKDOWN" }
+                { name: "OSI Model Encapsulation and Data Link Layer Sync.md" }
             ],
             "Networking Devices and Initial Configuration": [
-                { name: "Switch and Cisco Router Access Authentication Profile.md", type: "MARKDOWN" }
+                { name: "Switch and Cisco Router Access Authentication Profile.md" }
             ],
             "Network Addressing and Basic Troubleshooting": [
-                { name: "ICMP Diagnostics and Interface Trace Logging.md", type: "MARKDOWN" }
+                { name: "ICMP Diagnostics and Interface Trace Logging.md" }
             ]
         };
 
         const workspace = document.getElementById("workspace-view");
 
-        // View Generator A: Landing View (Lists all folders as crisp clickable buttons)
+        // View A: Main Dashboard View
         function loadHomeView() {
             document.getElementById("nav-root").classList.add("active");
             
             let html = `
-                <div class="section-header">
-                    <h2 class="section-title">Root Directories</h2>
+                <div>
+                    <div class="section-header">
+                        <h2 class="section-title">Cybersecurity and Networking Cases</h2>
+                    </div>
+                    <p class="welcome-lead">Welcome to my professional engineering log tracking core vulnerabilities, network infrastructure design controls, and architectural threat mapping profiles.</p>
                 </div>
                 <div class="folder-grid">
             `;
@@ -442,7 +521,7 @@
             workspace.innerHTML = html;
         }
 
-        // View Generator B: Subpage View (Opened inside identical system canvas with Return Arrow)
+        // View B: Custom Inside Page for Folders
         function loadFolderView(folderName) {
             document.getElementById("nav-root").classList.remove("active");
             const files = repositoryData[folderName];
@@ -458,27 +537,59 @@
             
             if (files && files.length > 0) {
                 files.forEach(file => {
-                    // Encodes URI parameters so links do not break due to file white spacing
-                    const secureUrl = `https://pmoksana.github.io/Cybersecurity/${encodeURIComponent(folderName)}/${encodeURIComponent(file.name)}`;
                     html += `
                         <li class="file-item">
-                            <a href="${secureUrl}" target="_blank" class="file-link">
-                                <span>📝 ${file.name}</span>
-                                <span class="meta-tag">${file.type}</span>
-                            </a>
+                            <div class="file-left-group">
+                                <span>📝</span>
+                                <span class="file-title-text">${file.name}</span>
+                            </div>
+                            <button class="open-file-btn" onclick="loadMarkdownView('${folderName}', '${file.name}')">Open Now</button>
                         </li>
                     `;
                 });
             } else {
-                html += `
-                    <li class="file-item" style="padding: 1.5rem; text-align: center; color: var(--db-text-muted);">
-                        No trace sheets compiled inside this directory yet.
-                    </li>
-                `;
+                html += `<li class="file-item" style="color: var(--db-text-muted);">No trace sheets compiled inside this directory yet.</li>`;
             }
             
             html += `</ul></div>`;
             workspace.innerHTML = html;
+        }
+
+        // View C: Native Case Document Reader (Fetches text from source repository and applies styling canvas)
+        function loadMarkdownView(folderName, fileName) {
+            // Target the raw GitHub repository file url securely
+            const rawUrl = `https://raw.githubusercontent.com/pmoksana/Cybersecurity/main/${encodeURIComponent(folderName)}/${encodeURIComponent(fileName)}`;
+            
+            workspace.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">${fileName}</h2>
+                    <div class="nav-actions-group">
+                        <button class="back-btn" onclick="loadFolderView('${folderName}')">← Back to Folder</button>
+                        <button class="back-btn" onclick="loadHomeView()">🏢 Main Home</button>
+                    </div>
+                </div>
+                <div class="markdown-body" id="markdown-container">
+                    <p style="color: var(--db-text-muted); font-family: 'JetBrains Mono', monospace;">🔄 Establishing background network handshake stream for raw documentation source...</p>
+                </div>
+            `;
+
+            // Stream document source string directly via native AJAX Fetch request
+            fetch(rawUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("Target sheet could not be reached via standard HTTP handshake.");
+                    return response.text();
+                })
+                .then(markdownText => {
+                    document.getElementById("markdown-container").innerHTML = marked.parse(markdownText);
+                })
+                .catch(err => {
+                    document.getElementById("markdown-container").innerHTML = `
+                        <div style="color: var(--db-lava); font-family: 'JetBrains Mono', monospace; padding: 1rem;">
+                            ⚠️ <strong>Fetch Collision:</strong> ${err.message}<br><br>
+                            <em>Note: Ensure file path strings correspond precisely with your upstream branch files.</em>
+                        </div>
+                    `;
+                });
         }
 
         // Auto Boot Entry Point
