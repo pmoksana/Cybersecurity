@@ -3,7 +3,7 @@
 # --- CONFIGURATION ---
 GITHUB_USER="pmoksana"
 REPO_NAME="Cybersecurity"
-REMOTE_URL="https://github.com/$GITHUB_USER/$REPO_NAME.git"
+REMOTE_URL="git@github.com:$GITHUB_USER/$REPO_NAME.git"
 # ---------------------
 
 echo "🚀 Starting GitHub Synchronization Process..."
