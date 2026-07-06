@@ -16,14 +16,12 @@ else
     echo "✅ Git repository already initialized."
 fi
 
-if ! git remote | grep -q "origin"; then
-    echo "🔗 Linking local repository to GitHub remote..."
-    git remote add origin "$REMOTE_URL"
-else
-    echo "✅ Remote origin connection verified."
-fi
+# Force update our remote url link to use working SSH key path
+git remote remove origin 2>/dev/null
+git remote add origin "$REMOTE_URL"
+echo "🔗 Connected securely using your Mac SSH authentication key."
 
-echo "📂 Staging project files..."
+echo "📂 Staging portfolio project files..."
 git add .
 
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
@@ -31,6 +29,6 @@ echo "💾 Committing changes..."
 git commit -m "Automated deployment via Mac script - $TIMESTAMP"
 
 echo "📤 Uploading files to GitHub Pages repository..."
-git push -u origin main
+git push -u origin main --force
 
 echo "🎉 Success! Code pushed to GitHub."

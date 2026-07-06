@@ -1,8 +1,8 @@
-## **Lab Document Enterprise Cybersecurity Issues** 
+## **Document Enterprise Cybersecurity Issues** 
 
 ## **Objectives** 
 
-## **Part 1: Record your assessment of Athena's cybersecurity issues.** 
+## **Part 1: Record my assessment of Athena's cybersecurity issues.** 
 
 ## **Part 2: Record the different types of assets owned by Athena.** 
 
