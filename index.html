@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybersecurity Engineering Hub</title>
     
-    <!-- Premium Technical Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Databricks 2026 Core Design System Tokens */
+        /* Databricks Core Design System Tokens */
         :root {
             --db-canvas: #1B3139;      /* Deep dark slate navy */
             --db-lava: #FF3621;        /* Vibrant brand orange/red accent */
@@ -40,7 +39,7 @@
             min-height: 100vh;
         }
 
-        /* Fixed Navigation Banner */
+        /* Navigation Banner */
         header {
             background-color: var(--db-canvas);
             color: #FFFFFF;
@@ -86,23 +85,6 @@
             color: var(--db-accent-pink);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .nav-links a {
-            color: #90A5B1;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: #FFFFFF;
-        }
-
         /* Layout Grid: Sidebar Left, Content Right */
         .main-wrapper {
             max-width: 1200px;
@@ -121,7 +103,7 @@
             }
         }
 
-        /* Sidebar Architecture (LEFT SIDE) */
+        /* Left Side: Directory Structure Panel */
         aside {
             display: flex;
             flex-direction: column;
@@ -164,12 +146,6 @@
             font-weight: 500;
             padding: 0.4rem 0.5rem;
             border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .directory-link:hover {
-            background-color: var(--db-oat-medium);
-            color: var(--db-lava);
         }
 
         .terminal-panel {
@@ -180,7 +156,6 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             padding: 1.25rem;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .terminal-cmd {
@@ -188,15 +163,11 @@
             font-weight: 600;
         }
 
-        /* Content Workspace (RIGHT SIDE) */
+        /* Right Side: Modules Workspace */
         .content-workspace {
             display: flex;
             flex-direction: column;
             gap: 2rem;
-        }
-
-        .section-header {
-            margin-bottom: 0.5rem;
         }
 
         .section-title {
@@ -215,45 +186,44 @@
             height: 1.5rem;
             background-color: var(--db-lava);
             border-radius: 2px;
-            display: inline-block;
         }
 
-        /* Cleaned Folder Grid */
+        /* Interactive Folder System Grid */
         .folder-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
         .folder-card {
             background-color: var(--db-card);
             border: 1px solid var(--db-border);
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(27, 49, 57, 0.02);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .folder-card:hover {
             border-color: #C0C8CC;
-            box-shadow: 0 6px 20px rgba(27, 49, 57, 0.05);
+            box-shadow: 0 6px 20px rgba(27, 49, 57, 0.06);
             transform: translateY(-2px);
         }
 
-        /* Make whole header layout visually clean */
-        .folder-header-link {
+        /* Entire Folder Header Link Wrapper */
+        .folder-route-link {
             text-decoration: none;
             display: block;
         }
 
         .folder-header {
             background-color: #F1EFEA;
-            padding: 1.25rem 1.5rem;
+            padding: 1.1rem 1.5rem;
             border-bottom: 1px solid var(--db-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.15s ease;
         }
 
         .folder-header:hover {
@@ -267,69 +237,63 @@
         }
 
         .folder-icon {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .folder-name {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--db-canvas);
-            letter-spacing: -0.01em;
         }
 
-        .file-count {
+        .action-tag {
             font-size: 0.75rem;
             background-color: var(--db-canvas);
             color: #FFFFFF;
-            padding: 0.2rem 0.5rem;
-            border-radius: 20px;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
             font-weight: 600;
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Case / Lab Files List inside Folders */
+        /* Embedded File List Layout */
         .file-list {
             list-style: none;
-            padding: 0.5rem 0;
-        }
-
-        .file-item {
-            border-bottom: 1px solid #F5F4F0;
-        }
-
-        .file-item:last-child {
-            border-bottom: none;
+            background-color: #FCFAF7;
         }
 
         .file-link {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem 1.5rem;
+            padding: 0.9rem 1.75rem;
             text-decoration: none;
             color: var(--db-text-main);
             font-weight: 500;
-            font-size: 0.98rem;
-            transition: background-color 0.2s ease, padding-left 0.2s ease;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #EEEDE9;
+            transition: all 0.2s ease;
+        }
+
+        .file-link:last-child {
+            border-bottom: none;
         }
 
         .file-link:hover {
-            background-color: #FAF9F6;
+            background-color: #FFFFFF;
             color: var(--db-lava);
-            padding-left: 1.75rem;
+            padding-left: 2rem;
         }
 
-        .file-meta-tag {
+        .meta-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--db-text-muted);
-            background-color: var(--db-oat-light);
-            padding: 0.2rem 0.5rem;
+            background-color: var(--db-oat-medium);
+            padding: 0.15rem 0.4rem;
             border-radius: 4px;
-            border: 1px solid var(--db-border);
         }
 
-        /* Footer Element */
         footer {
             background-color: var(--db-canvas);
             color: #90A5B1;
@@ -353,62 +317,140 @@
     <header>
         <div class="header-container">
             <div class="brand-section">
-                <span class="brand-tag">SECURE LOG</span>
+                <span class="brand-tag">SECURITY MATRIX</span>
                 <div class="brand-name">pmoksana // <span>Cybersecurity</span></div>
             </div>
-            <nav class="nav-links">
-                <a href="https://github.com/pmoksana/Cybersecurity" target="_blank">Repository ↗</a>
-            </nav>
         </div>
     </header>
 
     <div class="main-wrapper">
         
-        <!-- LEFT SIDE: Navigation Directory & Shell Trace -->
         <aside>
             <div class="directory-card">
                 <div class="directory-title">Navigation Directory</div>
                 <ul class="directory-menu">
-                    <li><a href="#" class="directory-link">📁 Root Workspace</a></li>
-                    <li><a href="https://github.com/pmoksana/Cybersecurity" target="_blank" class="directory-link">🔗 Git Core Source</a></li>
+                    <li><a href="#" class="directory-link">📁 Root Directory Workspace</a></li>
+                    <li><a href="https://github.com/pmoksana/Cybersecurity" target="_blank" class="directory-link">🔗 Main Git Repository ↗</a></li>
                 </ul>
             </div>
             
             <div class="terminal-panel">
                 <span class="terminal-cmd">$ ./deploy.sh</span><br>
-                🚀 Restructuring paths...<br>
-                ✅ Prefixes stripped safely.<br>
-                🎉 Synced successfully.
+                🚀 Parsing folder matrices...<br>
+                ✅ All 8 modules verified.<br>
+                🎉 Site sync accurate.
             </div>
         </aside>
 
-        <!-- RIGHT SIDE: Cleaned Interactive Folders -->
         <div class="content-workspace">
-            <div class="section-header">
+            <div>
                 <h2 class="section-title">Root Directories</h2>
             </div>
 
             <div class="folder-grid">
                 
-                <!-- Cleaned Folder Card 1: Network Defense (Prefix Free & Entirely Clickable) -->
                 <div class="folder-card">
-                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Network%20Defense" target="_blank" class="folder-header-link">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Cyber%20Threat%20Management" target="_blank" class="folder-route-link">
+                        <div class="folder-header">
+                            <div class="folder-info">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">Cyber Threat Management</span>
+                            </div>
+                            <span class="action-tag">EXPLORE ↗</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="folder-card">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Endpoint%20Security" target="_blank" class="folder-route-link">
+                        <div class="folder-header">
+                            <div class="folder-info">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">Endpoint Security</span>
+                            </div>
+                            <span class="action-tag">EXPLORE ↗</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="folder-card">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Network%20Defense" target="_blank" class="folder-route-link">
                         <div class="folder-header">
                             <div class="folder-info">
                                 <span class="folder-icon">📁</span>
                                 <span class="folder-name">Network Defense</span>
                             </div>
-                            <span class="file-count">VIEW MODULE ↗</span>
+                            <span class="action-tag">EXPLORE ↗</span>
                         </div>
                     </a>
                     <ul class="file-list">
-                        <li class="file-item">
+                        <li>
                             <a href="https://pmoksana.github.io/Cybersecurity/Network%20Defense/1_3_5_Lab_Document_Enterprise_Cybersecurity_Issues.md" class="file-link">
                                 <span>📝 1.3.5 Lab Document Enterprise Cybersecurity Issues</span>
-                                <span class="file-meta-tag">MARKDOWN</span>
+                                <span class="meta-label">MARKDOWN</span>
                             </a>
                         </li>
                     </ul>
+                </div>
+
+                <div class="folder-card">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Network%20Addressing%20and%20Basic" target="_blank" class="folder-route-link">
+                        <div class="folder-header">
+                            <div class="folder-info">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">Network Addressing and Basic</span>
+                            </div>
+                            <span class="action-tag">EXPLORE ↗</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="folder-card">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Network%20Support%20and%20Security" target="_blank" class="folder-route-link">
+                        <div class="folder-header">
+                            <div class="folder-info">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">Network Support and Security</span>
+                            </div>
+                            <span class="action-tag">EXPLORE ↗</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="folder-card">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Networking%20Basics" target="_blank" class="folder-route-link">
+                        <div class="folder-header">
+                            <div class="folder-info">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">Networking Basics</span>
+                            </div>
+                            <span class="action-tag">EXPLORE ↗</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="folder-card">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Networking%20Devices%20and%20Initial%20Configuration" target="_blank" class="folder-route-link">
+                        <div class="folder-header">
+                            <div class="folder-info">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">Networking Devices and Initial Configuration</span>
+                            </div>
+                            <span class="action-tag">EXPLORE ↗</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="folder-card">
+                    <a href="https://github.com/pmoksana/Cybersecurity/tree/main/Network%20Addressing%20and%20Basic%20Troubleshooting" target="_blank" class="folder-route-link">
+                        <div class="folder-header">
+                            <div class="folder-info">
+                                <span class="folder-icon">📁</span>
+                                <span class="folder-name">Network Addressing and Basic Troubleshooting</span>
+                            </div>
+                            <span class="action-tag">EXPLORE ↗</span>
+                        </div>
+                    </a>
                 </div>
 
             </div>
@@ -417,7 +459,7 @@
 
     <footer>
         <div class="footer-container">
-            <div>&copy; 2026 pmoksana. All modules aligned via Databricks system design standards.</div>
+            <div>&copy; 2026 pmoksana. Engineered meticulously using Databricks corporate design patterns.</div>
             <div style="letter-spacing: 0.12em; font-weight: 700; color: #FFFFFF;">CONNECTED SECURITY PROTOCOL // ACTIVE</div>
         </div>
     </footer>
